@@ -2,6 +2,9 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 public class Conexion {
@@ -20,12 +23,27 @@ public class Conexion {
     
     public Connection conectar(){
     
-    
-    
+        try
+        {
+            Class.forName(DRIVER);
+            this.cadena=DriverManager.getConnection(URL+DB,USER,PASSWORD);
+        } catch (ClassNotFoundException | SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+             }
+        return this.cadena;
     }
     
     public void desconectar(){
-    
+        try
+        {
+            
+            this.cadena.close();
+            
+        } catch (SQLException e)
+        {
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     
     
     }
