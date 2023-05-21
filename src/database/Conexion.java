@@ -30,6 +30,7 @@ public class Conexion {
         } catch (ClassNotFoundException | SQLException e)
         {
             JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
              }
         return this.cadena;
     }
